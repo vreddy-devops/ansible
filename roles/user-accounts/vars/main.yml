@@ -1,0 +1,8 @@
+---
+admins:
+     - name: vreddy
+       key: "{{ lookup('file', 'roles/common/files/publickeys/vreddy.pub') }}"
+
+dev:
+    - name: test
+      key: "{{ lookup('file', 'roles/common/files/publickeys/test.pub') }}"

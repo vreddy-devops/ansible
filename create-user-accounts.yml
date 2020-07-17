@@ -1,0 +1,10 @@
+---
+- name: apply common configuration to all hosts
+  hosts: common
+  become: yes
+  vars: 
+    dev_users: "{{ hostvars[groups['common'][0]]['dev_users'] }}"
+  
+
+  roles:
+    - user-accounts
