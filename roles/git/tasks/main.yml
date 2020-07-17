@@ -8,3 +8,8 @@
   yum: 
     name: git 
     state: present
+
+- name: install Apache
+  yum:
+    name: httpd
+    state: present
