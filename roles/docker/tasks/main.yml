@@ -1,0 +1,27 @@
+---
+- name: install docker
+  yum:
+    name: docker
+
+- name: start docker service
+  service: name=docker state=started enabled=yes
+  
+- shell: uname -m
+  ignore_errors: yes
+  register: uname_result_m
+
+- shell: uname -s
+  ignore_errors: yes
+  register: uname_result_s
+
+- name: install docker-compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-{{ uname_result_s.stdout }}-{{ uname_result_m.stdout }}"
+    dest: /usr/local/bin/docker-compose
+    owner: root
+    mode: 0774
+    group: docker
+    force: true
+
+- name: create a softlink
+  file: src=/usr/local/bin/docker-compose dest=/usr/bin/docker-compose state=link

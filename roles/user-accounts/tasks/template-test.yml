@@ -1,0 +1,7 @@
+- name: Template a file to /etc/files.conf
+  template:
+    src: keypair.j2
+    dest: /opt/keypair
+    owner: ec2-user
+    group: root
+    mode: '0700'
