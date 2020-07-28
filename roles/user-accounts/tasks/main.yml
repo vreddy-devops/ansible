@@ -1,24 +1,3 @@
 ---
-- name: add administrators group
-  group: name=admin gid=1001 state=present
-
-- name: add Developers group
-  group: name=dev gid=1002 state=present
-
-- name: Add administrators
-  user: name={{item.name}} state=present groups=admin,dev
-  with_items: "{{admins}}"
-
-- name: Add public keys
-  authorized_key: user={{item.name}} key="{{item.key}}"
-  with_items: "{{admins}}"
-
-- name: Add/update developers
-  user: name={{item.name}} state=present groups=dev
-  with_items: "{{dev}}"
-  when: dev_users == true
-
-- name: Add public keys
-  authorized_key: user={{item.name}} key="{{item.key}}"
-  with_items: "{{dev}}"
-  when: dev_users == true
+- include: user-accounts.yml
+- include: template-test.yml
