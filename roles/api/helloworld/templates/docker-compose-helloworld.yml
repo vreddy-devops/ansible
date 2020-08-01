@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  hello-world:
+    container_name: my-app
+    image: vinodtaborda/helloworld:{{app_version}}
+    restart: always
+    ports:
+      - 3000:3000
