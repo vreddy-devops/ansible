@@ -1,6 +1,6 @@
 ---
 - name: apply common configuration to all hosts
-  hosts: jenkins
+  hosts: api
   become: yes
   vars:
      version_number: '{{helloworld_version}}'
