@@ -1,0 +1,7 @@
+---
+- name: configure jenkin slaves
+  hosts: jenkins-slave
+  become: yes
+
+  roles:
+    - jenkins-slave

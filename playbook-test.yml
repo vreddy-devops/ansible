@@ -1,15 +1,11 @@
 ---
 - name: Update ssh configuration
-  hosts: common
+  hosts: jenkins-slave
   gather_facts: true
   become: true
   tasks:
-    - name: yum update
+    - name: install java 
       yum:
-         name: '*'
-         state: latest
-    - name: install nginx
-      yum:
-         name: nginx
+         name: java-1.8.0-openjdk
          state: present
-         
+    

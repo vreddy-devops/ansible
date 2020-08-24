@@ -20,10 +20,3 @@
     command: docker-compose -f docker-compose.yml up -d 
     args:
       chdir: /opt/helloworld
-
-  # - name: Start up the docker service
-  #   shell: |
-  #     export COMPOSE_HTTP_TIMEOUT=300
-  #     docker-compose -f docker-compose.yml up -d -t 360
-  #   args:
-  #     chdir: /opt/helloworld

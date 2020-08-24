@@ -1,0 +1,41 @@
+---
+
+- name: Install git
+  yum: name=git state=present
+  
+- name: install java
+  yum: name=java-1.8.0-openjdk state=present
+
+- name: copy the keyfile
+  copy: 
+    src: roles/jenkins-slave/files/sshkeys.j2
+    dest: /home/ec2-user/.ssh/dev.pem
+    owner: ec2-user
+    group: ec2-user
+    mode: 0400
+
+- name: ensure github.com is a known host
+  lineinfile:
+    dest: /home/ansible/.ssh/known_hosts
+    create: yes
+    state: present
+    mode: 0644
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
+    regexp: "^github\\.com"
+
+
+- name: copy the vault key
+  copy:
+    src: roles/jenkins-slave/files/ansible-vault.j2
+    dest: /home/ansible/.ssh/vault.txt
+    owner: ec2-user
+    group: ec2-user
+    mode: 0400
+
+- name: create jenkins directory
+  file:
+    path: /opt/jenkins
+    state: directory
+    mode: 0751
+    owner: ec2-user
+    group: ec2-user
