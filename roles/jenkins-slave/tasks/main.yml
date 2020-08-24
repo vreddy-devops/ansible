@@ -27,7 +27,7 @@
 - name: copy the vault key
   copy:
     src: roles/jenkins-slave/files/ansible-vault.j2
-    dest: /home/ansible/.ssh/vault.txt
+    dest: /home/ec2-user/.ssh/vault.txt
     owner: ec2-user
     group: ec2-user
     mode: 0400

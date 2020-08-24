@@ -5,4 +5,5 @@
   vars:
      version_number: '{{helloworld_version}}'
   roles:
+    - { role: docker}
     - { role: api/helloworld, app_version : '{{version_number}}' }
