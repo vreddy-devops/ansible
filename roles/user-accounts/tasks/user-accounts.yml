@@ -1,24 +1,48 @@
 ---
-- name: add administrators group
-  group: name=admin gid=1001 state=present
+# - name: add administrators group
+#   group: name=admin gid=1001 state=present
 
-- name: add Developers group
-  group: name=dev gid=1002 state=present
+# - name: add Developers group
+#   group: name=dev gid=1002 state=present
 
-- name: Add admin users and add them to the admin,dev group
-  user: name={{item.name}} state=present groups=admin,dev
+- name: add user accounts for admin group
+  user: name="{{item.name}}" state=present groups=admin
   with_items: "{{admins}}"
 
-- name: Add public keys
-  authorized_key: user={{item.name}} key="{{item.key}}"
+- name: Set authorized key took from file
+  authorized_key:
+    user: "{{item.name}}"
+    state: present
+    key: "{{item.key}}"
   with_items: "{{admins}}"
 
-- name: Add/update developers
-  user: name={{item.name}} state=present groups=dev
+- name: add user accounts for dev group
+  user: name="{{item.name}}" state=present groups=dev
   with_items: "{{dev}}"
   when: dev_users == true
 
-- name: Add public keys
-  authorized_key: user={{item.name}} key="{{item.key}}"
+- name: Set authorized key took from file
+  authorized_key:
+    user: "{{item.name}}"
+    state: present
+    key: "{{item.key}}"
   with_items: "{{dev}}"
   when: dev_users == true
+
+# - name: Add admin users and add them to the admin,dev group
+#   user: name={{item.name}} state=present groups=admin,dev
+#   with_items: "{{admins}}"
+
+# - name: Add public keys
+#   authorized_key: user={{item.name}} key="{{item.key}}"
+#   with_items: "{{admins}}"
+
+# - name: Add/update developers
+#   user: name={{item.name}} state=present groups=dev
+#   with_items: "{{dev}}"
+#   when: dev_users == true
+
+# - name: Add public keys
+#   authorized_key: user={{item.name}} key="{{item.key}}"
+#   with_items: "{{dev}}"
+#   when: dev_users == true

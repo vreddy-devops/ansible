@@ -1,10 +1,10 @@
 ---
 admins:
-     - name: vreddy
-       key: "{{ lookup('file', 'roles/user-accounts/files/publickeys/vreddy.pub') }}"
-     - name: test
-       key: "{{ lookup('file', 'roles/user-accounts/files/publickeys/dev.pub') }}"
+  - name: vreddy
+    key: "{{ lookup('file', 'roles/user-accounts/files/publickeys/vreddy.pub') }}"
+  - name: sruthi
+    key: "{{ lookup('file', 'roles/user-accounts/files/publickeys/sruthi.pub') }}"
 
 dev:
-    - name: developer
-      key: "{{ lookup('file', 'roles/user-accounts/files/publickeys/test.pub') }}"
+  - name: snigdha
+    key: "{{ lookup('file', 'roles/user-accounts/files/publickeys/snigdha.pub') }}"
