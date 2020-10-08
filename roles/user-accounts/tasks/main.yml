@@ -1,3 +1,9 @@
 ---
+# - name: add administrators group
+#   group: name=admin gid=1001 state=present
+
+# - name: add Developers group
+#   group: name=dev gid=1002 state=present
+
 - include: user-accounts.yml
-- include: template-test.yml
+# - include: template-test.yml

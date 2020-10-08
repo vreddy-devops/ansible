@@ -1,0 +1,22 @@
+---
+  - name: create the dashboard directory /opt/helloworld
+    file: path=/opt/helloworld state=directory mode=0755
+
+
+  - name: Deploy the docker-compose file
+    template: src=docker-compose-helloworld.yml dest=/opt/helloworld/docker-compose.yml
+
+  - name: pull the docker-compose file for helloworld
+    command: "docker-compose pull"
+    args:
+      chdir: /opt/helloworld
+
+  - name: Down any existing containers and volumes
+    command: docker-compose -f docker-compose.yml down --volumes --remove-orphans
+    args:
+      chdir: /opt/helloworld
+  
+  - name: Start up the docker service
+    command: docker-compose -f docker-compose.yml up -d 
+    args:
+      chdir: /opt/helloworld

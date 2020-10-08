@@ -27,15 +27,15 @@
 - name: start jenkins service
   service: name=jenkins enabled=yes state=started
 
-- name: sleep for 30 seconds and continue with play
-  pause:
-    seconds: 20
+# - name: sleep for 30 seconds and continue with play
+#   pause:
+#     seconds: 20
 
-- name: init password jenkin
-  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
-  changed_when: false
-  register: result
+# - name: init password jenkin
+#   shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+#   changed_when: false
+#   register: result
 
-- name: print init password jenkins
-  debug:
-    var: result.stdout
+# - name: print init password jenkins
+#   debug:
+#     var: result.stdout

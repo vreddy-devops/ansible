@@ -1,0 +1,10 @@
+---
+- name: playbook for a sample installation
+  hosts: common
+  gather_facts: true
+  become: true
+  tasks: 
+    - name: install git
+      yum: 
+        name: git
+        state: present

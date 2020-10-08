@@ -1,12 +1,10 @@
 ---
 - name: apply common configuration to all hosts
-  hosts: common1
+  hosts: git
   become: yes
-  vars:
-    dev_users: "{{hostvars[groups['common'][0]]['dev_users']}}"
   # vars: 
   #   dev_users: "{{ hostvars[groups['common'][0]]['dev_users'] }}"
   #   environment_name: "{{ hostvars[groups['environment'][0]]['env_name'] }}"
 
   roles:
-    - user-accounts
+    - git
