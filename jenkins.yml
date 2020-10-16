@@ -1,6 +1,7 @@
 ---
 - name: apply common configuration to all hosts
   hosts: jenkins
+  become: true
   roles:
     - jenkins
     - git

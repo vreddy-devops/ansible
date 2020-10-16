@@ -16,7 +16,7 @@
 
 - name: ensure github.com is a known host
   lineinfile:
-    dest: /home/ansible/.ssh/known_hosts
+    dest: /home/ec2-user/.ssh/known_hosts
     create: yes
     state: present
     mode: 0644
