@@ -1,0 +1,6 @@
+---
+- name: apply common configuration to all hosts
+  hosts: common
+  become: yes
+  roles:
+    - docker
