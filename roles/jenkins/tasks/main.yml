@@ -11,13 +11,13 @@
 
 - name: download jenkins.repo
   get_url:
-    url: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+    url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
     dest: /etc/yum.repos.d/jenkins.repo
 
 - name: import jenkins key
   rpm_key:
     state: present
-    key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+    key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 
 - name: install jenkins
   yum:
@@ -26,16 +26,3 @@
 
 - name: start jenkins service
   service: name=jenkins enabled=yes state=started
-
-# - name: sleep for 30 seconds and continue with play
-#   pause:
-#     seconds: 20
-
-# - name: init password jenkin
-#   shell: cat /var/lib/jenkins/secrets/initialAdminPassword
-#   changed_when: false
-#   register: result
-
-# - name: print init password jenkins
-#   debug:
-#     var: result.stdout
